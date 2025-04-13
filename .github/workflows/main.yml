@@ -13,5 +13,5 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Conditional
-        if: 4 % 2 == 0
+        if: ${{ 4 % 2 == 0 }}
         run: echo "That worked"
