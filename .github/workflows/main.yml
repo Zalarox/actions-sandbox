@@ -8,3 +8,10 @@ jobs:
     steps:
       - name: Hello World
         run: echo "Hello world"
+        
+      - name: Checkout action
+        uses: actions/checkout@v4
+
+      - name: Conditional
+        if: 4 % 2 == 0
+        run: echo "That worked"
