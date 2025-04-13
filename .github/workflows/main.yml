@@ -1,17 +1,30 @@
 name: My Workflow
 
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name"
+        required: true
+        default: "Friend"
+
+      environment:
+        description: "Select environment"
+        type: choice
+        options:
+          - dev
+          - prod
+
+      testable:
+        description: "idk"
+        type: boolean
 
 jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
       - name: Hello World
-        run: echo "Hello world"
+        run: |
+          echo "Hello, ${{ github.event.inputs.name }}"
+          echo "Running on ${{ github.event.inputs.environment }} with ${{ github.event.inputs.testable }}
         
-      - name: Checkout action
-        uses: actions/checkout@v4
-
-      - name: Conditional
-        if: ${{ 4 % 2 == 0 }}
-        run: echo "That worked"
