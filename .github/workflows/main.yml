@@ -1,6 +1,7 @@
 name: My Workflow
 
-on: 
+on:
+  push:
   workflow_dispatch:
     inputs:
       name:
