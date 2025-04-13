@@ -17,6 +17,8 @@ on:
 
       testable:
         description: "idk"
+        required: false
+        default: "false"
         type: boolean
 
 jobs:
@@ -26,5 +28,11 @@ jobs:
       - name: Hello World
         run: |
           echo "Hello, ${{ github.event.inputs.name }}"
-          echo "Running on ${{ github.event.inputs.environment }} with ${{ github.event.inputs.testable }}"
-        
+          echo "Running on ${{ github.event.inputs.environment }}"
+
+  only-on-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: some prod step
+        if: github.event.inputs.environment == 'prod'
+        run: echo "you're in prod!"
